@@ -1,0 +1,12 @@
+<!--pages/home-video/index.wxml-->
+<view class="video">
+  <!-- 为了提升性能 这里必须绑定key 否则会报错  block不生成任何的组件或元素 -->
+  <view class="item" wx:for="{{topMVs}}" wx:key="id">
+    <!-- data-item="{{item}}" 相当于给这个组件添加了一个item属性 而且最终可以在click里面的event中拿到 -->
+    <video-item-v1 
+      item="{{item}}" 
+      bindtap="handleVideoItemClick"
+      data-item="{{item}}">
+    </video-item-v1>
+  </view>
+</view>

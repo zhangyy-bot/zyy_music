@@ -1,0 +1,43 @@
+/* components/nav-bar/index.wxss */
+.nav-bar {
+  display: flex;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+}
+.left, .right {
+  width: 120rpx;
+}
+/* 动态插槽的实现： */
+/* 1.默认情况下不展示 */
+.left-arrow {
+  display: none;
+}
+/* 2.当left-slot为空时，展示left-arrow的内容 */
+.left-slot:empty + .left-arrow {
+  display: block;
+}
+.left .left-arrow .icon {
+  width: 44rpx;
+  vertical-align: middle;
+}
+.center {
+  display: flex;
+  flex: 1;
+  font-size: 28rpx;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+.center .divider {
+  margin: 0 10rpx;
+}
+/* 动态插槽的实现： */
+/* 1.默认情况下不展示 */
+.center-title {
+  display: none;
+}
+/* 2.当center-slot为空时，展示center-title的内容 */
+.center-slot:empty + .center-title {
+  display: block;
+}

@@ -1,0 +1,30 @@
+<!--components/song-detail-header/index.wxml-->
+<wxs src="/utils/format.wxs" module="format"></wxs>
+<view class="header">
+    <!-- 背景 -->
+    <!-- mode="aspectFill" 希望图片宽度和高度是固定的 同时图片把区域1填满 -->
+    <image class="bg-image" mode="aspectFill" src="{{menuInfo.coverImgUrl}}"></image>
+    <view class="bg-cover"></view>
+    <!-- 内容 -->
+    <view class="content">
+      <image class="image" src="{{menuInfo.coverImgUrl}}" mode="aspectFill"></image>
+      <view class="info">
+        <view class="title">{{menuInfo.name}}</view>
+        <view class="author">
+          <image class="avatar" mode="aspectFill" src="{{menuInfo.creator.avatarUrl}}"></image>
+          <text class="nickname">{{menuInfo.creator.nickname}}</text>
+        </view>
+        <view class="desc">简介：{{menuInfo.description}}</view>
+      </view>
+    </view>
+    <view class="operation">
+      <view class="favor item">
+        <image class="icon" mode="widthFix" src="/assets/images/icons/favor_icon.png"></image>
+        <text class="text">{{format.formatCount(menuInfo.playCount)}}</text>
+      </view>
+      <view class="share item">
+        <image class="icon" mode="widthFix" src="/assets/images/icons/share_icon.png"></image>
+        <text class="text">分享</text>
+      </view>
+    </view>
+  </view>

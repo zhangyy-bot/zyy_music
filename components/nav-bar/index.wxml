@@ -1,0 +1,19 @@
+<!--components/nav-bar/index.wxml-->
+<view class="nav">
+  <view style="height: {{statusBarHeight}}px;"></view>
+  <view class="nav-bar">
+    <view class="left" bindtap="handleLeftClick">
+      <!-- 动态插槽 如果插槽里面有内容就展示插槽内的内容 如果没有就展示下面的内容（顺序会有影响） 可以通过css样式实现-->
+      <view class="left-slot"><slot name="left"></slot></view>
+      <view class="left-arrow">
+        <image class="icon" mode="widthFix" src="/assets/images/icons/arrow-left.png"></image>
+      </view>
+    </view>
+    <!-- 动态插槽 -->
+    <view class="center">
+      <view class="center-slot"><slot name="title"></slot></view>
+      <view class="center-title">{{title}}</view>
+    </view>
+    <view class="right"></view>
+  </view>
+</view>

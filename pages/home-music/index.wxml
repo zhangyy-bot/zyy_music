@@ -1,0 +1,68 @@
+<!--pages/home-music/index.wxml-->
+<!-- 搜索框 -->
+<van-search disabled shape="round" background="#fafafa" placeholder="搜索你喜欢的歌曲" bind:click-input="handleSearchClick" />
+<!-- 轮播图 -->
+<swiper class="swiper" 
+        indicator-dots 
+        autoplay 
+        circular 
+        style="height: {{swiperHeight}}px">
+  <!-- block不会生成任何的元素和组件 -->
+  <block wx:for="{{banners}}" wx:key="bannerId">
+    <swiper-item class="swiper-item">
+      <image class="swiper-image" mode="widthFix" src="{{item.pic}}" bindload="handleSwiperImageLoaded"></image>
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 推荐歌曲 -->
+<view class="recommend-song">
+  <area-header title="推荐歌曲" bind:click="hanldeMoreClick"></area-header>
+  <view class="song-list">
+    <block wx:for="{{recommendSongs}}" wx:key="id">
+      <song-item-v1 item="{{item}}" bindtap="hanldeSongItemClick"
+      data-index="{{index}}"></song-item-v1>
+    </block>
+  </view>
+</view>
+<!-- 热门/推荐歌单 -->
+<view class="hot-song" wx:if="{{recommendSongMenu.length > 0 && hotSongMenu.length > 0}}">
+  <area-header title="热门歌单"></area-header>
+  <song-menu-area songMenu="{{hotSongMenu}}"></song-menu-area>
+  <area-header title="推荐歌单"></area-header>
+  <song-menu-area songMenu="{{recommendSongMenu}}"></song-menu-area>
+</view>
+<!-- 巅峰榜 -->
+<view class="ranking">
+  <area-header title="巅峰榜" showRight="{{false}}"></area-header>
+  <view class="ranking-list">
+    <!-- 小程序是支持对象的遍历的 遍历对象时item是value 那么key对应的index-->
+    <block wx:for="{{rankings}}" wx:key="name">
+      <!-- 这里直接监听组件的tap事件 不需要内部发射事件 -->
+      <!-- 遍历对象的时候 index就是对象中的key(0,2,3) -->
+      <ranking-area-item item="{{item}}"   
+                         bindtap="handleRankingItemClick"
+                         data-idx="{{index}}">
+      </ranking-area-item>
+    </block>
+  </view>
+</view>
+
+<!-- 播放工具栏 -->
+<view class="play-bar-placeholder" wx:if="{{currentSong.id}}"></view>
+<!-- wx:if为什么不直接判断currentSong呐？因为我们默认给currentSong：{}，所以它判断也会为真 -->
+<view class="play-bar" wx:if="{{currentSong.id}}"  bindtap="handlePlayBarClick">
+  <view class="left">
+    <image class="album album-anim" 
+           style="animation-play-state: {{isPlaying ? 'running' : 'paused'}}"
+           mode="aspectFill" 
+           src="{{currentSong.al.picUrl}}"></image>
+    <view class="name">{{currentSong.name}}</view>
+  </view>
+  <view class="right">
+    <!-- 将bindtap改成catchtap可以阻止事件冒泡 -->
+    <image class="icon play" 
+           src="/assets/images/music/{{isPlaying ? 'pause' : 'play'}}_icon.png"
+           catchtap="handleBtnClick"></image>
+    <image class="icon list" src="/assets/images/music/playlist_icon.png"></image>
+  </view>
+</view>

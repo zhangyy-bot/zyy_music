@@ -1,0 +1,16 @@
+<!--components/video-item-v1/index.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+<view class="item">
+  <view class="album">
+    <!-- image组件本身是有一个默认高度的（320px 240px） 
+      但其实我们希望的是根据宽度来自动调整高度 mode属性 -->
+    <image class="image" src="{{ item.cover }}" mode="widthFix"></image>
+    <view class="info">
+      <view class="count">{{ format.formatCount(item.playCount) }}</view>
+      <view class="duration">{{ format.formatDuration(item.mv.videos[0].duration) }}</view>
+    </view>
+  </view>
+  <view class="content">
+    {{ item.name }} - {{item.artistName}}
+  </view>
+</view>

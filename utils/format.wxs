@@ -1,0 +1,27 @@
+// 不支持ES6的语法 框架--WXS语法参考--基础类库
+function formatCount(count) {
+  // parseInt是一个全局的函数
+  var counter = parseInt(count)
+  if (counter > 100000000) {
+    return (counter / 100000000).toFixed(1) + '亿'
+  } else if (counter > 10000) {
+    return (counter / 10000).toFixed(1) + '万'
+  } else {
+    return counter + ''
+  }
+}
+
+function formatDuration(duration) {
+  duration = duration / 1000
+  var minute = Math.floor(duration / 60)
+  var second = parseInt(duration % 60)
+  minute = minute > 10 ? minute : '0' + minute
+  second = second > 10 ? second : '0' + second
+  return minute + ":" + second
+}
+
+// 不支持ES6 所以要用commonJs 也不支持对象的增强写法
+module.exports = {
+  formatCount: formatCount,
+  formatDuration: formatDuration
+}

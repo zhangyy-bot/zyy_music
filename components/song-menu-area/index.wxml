@@ -1,0 +1,12 @@
+<!--components/song-menu-area/index.wxml-->
+<scroll-view scroll-x class="menu-list">
+  <block wx:for="{{songMenu}}" wx:key="id">
+    <view class="menu-item">
+      <!-- data-* 自定义属性 组件上触发事件时，会发送给事件处理函数 -->
+      <song-menu-item item="{{item}}"
+                     bindtap="handleMenuItemClick"
+                     data-item="{{item}}">
+      </song-menu-item>    
+    </view>
+  </block>
+</scroll-view>
